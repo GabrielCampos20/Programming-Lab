@@ -1,42 +1,53 @@
 import 'dart:io';
-import 'Cliente.dart';
+class Banco{
+  
+    late String nome;
+    late int idade;
+    late double saldo = 0;
 
-void main(){
+    void criarConta(){
+      print("Qual o seu nome?");
+      String nome = stdin.readLineSync()!;
+      print("Qual a sua idade?");
+      int idade = int.parse(stdin.readLineSync()!);
 
-  Cliente c = Cliente();
-  var clientes = [];
-
-  while(1>0){
-
-    print("1 - Criar Conta");
-    print("2 - Excluir Conta");
-    print("3 - Consultar Saldo");
-    print("4 - Depositar");
-    print("5 - Sacar");
-    print("6 - Encerrar Atendimento");
-    print("7 - Exiba a lista toda menó");
-
-    print("Informe o número da opção desejada: ");
-    String? opc = stdin.readLineSync();
-
-    if (opc == "1"){
-      c.criarConta();
-      clientes.add(c);
-    }else if (opc == "2"){
-      
-    }else if (opc == "3"){
-      
-    }else if (opc == "4"){
-      
-    }else if (opc == "5"){
-      
-    }else if (opc == "6"){
-     break; 
-    }else if (opc == "7"){
-      for (int i = 0; i <= clientes.length; i++){
-        print(clientes[i]);
+      if(idade >= 18){
+        print("Conta criada com sucesso! Seja bem vindo(a) $nome");
+      }else{
+        print("Erro, é necessário ser maior de idade para ter acesso a uma conta!");
       }
     }
-  }
+
+    void excluirConta(){
+
+    }
+
+    void consultarSaldo(){
+      print("Seu saldo atual é de $saldo reais.");
+    }
+
+    void depositar(){
+      print("Quanto deseja depositar?");
+      double valor = double.parse(stdin.readLineSync()!);
+
+      if(valor > 0){
+        saldo = saldo+valor;
+        print("O valor de $valor real(s) foi depositado em sua conta, seu saldo atual é de $saldo real(s)!");
+      }else{
+        print("Informe um valor válido.");
+      }
+    }
+
+    void sacar(){
+      print("Seu saldo atual é de $saldo real(s), quanto deseja sacar?");
+
+      double valor = double.parse(stdin.readLineSync()!);
+      if(valor <= saldo){
+        saldo = saldo-valor;
+        print("Saque efeituado com sucesso!");
+      }else{
+        print("Erro, insira um valor válido.");
+      }
+    }
 
 }
